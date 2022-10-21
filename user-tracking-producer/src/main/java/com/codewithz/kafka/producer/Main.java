@@ -19,14 +19,16 @@ public class Main {
     	EventGenerator eventGenerator=new EventGenerator();
     	
     	Properties props=new Properties();
-    	props.put("bootstrap.servers","localhost:9092,localhost:9093");
-    	props.put("key.serializer","org.apache.kafka.common.serialization.StringSerializer");
-    	props.put("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
+    	props.put("bootstrap.servers","localhost:9092");
+    	 props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
+         props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
+         props.put("schema.registry.url", "http://localhost:8081");
+
     	
     	
     	Producer<String, String> producer=new KafkaProducer<>(props);
     	
-    	String topic="user-tracking";
+    	String topic="user-tracking-avro";
     	
     	for(int i=1;i<=10;i++) {
     		
